@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.bbs.dao.BbsMapper">
+    
+    <select id="listBbsMst" resultType="com.example.bbs.dto.BbsDTO">
+		SELECT
+			  BBS_SEN 
+			, BBS_TY_CD
+			, BBS_NAE
+			, BBS_DESCRIPT
+			, SORT_ORD
+		FROM BBS_MST
+    </select>
+</mapper>

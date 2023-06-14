@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bbs.dto.BbsDTO;
 import com.example.bbs.service.BbsService;
 import com.example.bbs.service.impl.BbsServiceImpl;
 
@@ -28,9 +29,9 @@ public class BbsController {
 	
 	@Operation(summary = "게시판 내역 조회", description = "게시판 내역 조회")
 	@GetMapping("/list")
-	public ResponseEntity<List<HashMap<String, String>>> listBbs() {
+	public ResponseEntity<List<BbsDTO>> listBbs() {
 		
-		List<HashMap<String, String>> list = bbsService.listBbsMst();
+		List<BbsDTO> list = bbsService.listBbsMst();
 		
 		return ResponseEntity.ok(list);
 	}
