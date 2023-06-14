@@ -17,11 +17,15 @@ public class BbsDTO {
 	private int bbsSen;
 	@Schema(description = "게시판 유형", example = "")
 	private String bbsTyCd;
+	@Schema(description = "게시판 유형명", example = "")
+	private String bbsTyNae;
 	@Schema(description = "게시판 명", example = "")
 	private String bbsNae;
 	@Schema(description = "게시판 설명", example = "")
 	private String bbsDescript;
 	@Schema(description = "게시판 순서", example = "")
 	private int sortOrd;
+	@Schema(description = "생성일시", example = "")
+	private String inpDt;
 
 }

@@ -6,12 +6,15 @@
 <mapper namespace="com.example.bbs.dao.BbsMapper">
     
     <select id="listBbsMst" resultType="com.example.bbs.dto.BbsDTO">
-		SELECT
+		/** BbsMapper.listBbsMst **/
+	  SELECT
 			  BBS_SEN 
 			, BBS_TY_CD
+			, FS_CMMN_CD_NAE(BBS_TY_CD) BBS_TY_NAE
 			, BBS_NAE
 			, BBS_DESCRIPT
 			, SORT_ORD
+			, DATE_FORMAT(INP_DT, '%Y-%m-%d') AS INP_DT
 		FROM BBS_MST
     </select>
 </mapper>
