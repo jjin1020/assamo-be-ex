@@ -26,4 +26,10 @@ public interface BbsService {
 	 * @param bbsDTO
 	 */
 	public BbsDTO saveBoard(BbsDTO bbsDTO);
+	
+	/**
+	 * 게시판 설정 삭제
+	 * @param bbsSen
+	 */
+	public void deleteBoard(String bbsSen);
 }

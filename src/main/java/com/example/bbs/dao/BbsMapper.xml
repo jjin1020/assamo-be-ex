@@ -139,4 +139,17 @@
 		AND OPTN_SEN = #{optnSen}
 		
 	</update>
+	
+	<delete id="deleteBbsMst" parameterType="String">
+		/** BbsMapper.deleteBbsMst **/
+		DELETE FROM BBS_MST
+		WHERE BBS_SEN = #{bbsSen}
+	</delete>
+	
+	<delete id="deleteBbsOptn" parameterType="String">
+		/** BbsMapper.deleteBbsMst **/
+		DELETE FROM BBS_OPTN
+		WHERE OPTN_SEN = #{optnSen}
+		
+	</delete>
 </mapper>

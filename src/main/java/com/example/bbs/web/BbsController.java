@@ -3,6 +3,7 @@ package com.example.bbs.web;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +55,13 @@ public class BbsController {
 		
 		System.out.println(obj);
 		return ResponseEntity.ok(obj);
+	}
+	
+	@Operation(summary = "게시판 설정 삭제", description = "게시판 설정 삭제")
+	@DeleteMapping("/deleteBoard/{bbsSen}")
+	public ResponseEntity<Void> deleteBoard(@Parameter(description = "게시판 일련번호", example = "1", required = true) @PathVariable(required = true) String bbsSen) {
+		bbsService.deleteBoard(bbsSen);
+		return ResponseEntity.noContent().build();
 	}
 	
 }

@@ -61,4 +61,15 @@ public class BbsServiceImpl implements BbsService{
 		
 	}
 
+	@Transactional()
+	@Override
+	public void deleteBoard(String bbsSen) {
+		// TODO Auto-generated method stub
+		
+		bbsMapper.deleteBbsOptn(bbsSen);
+		
+		bbsMapper.deleteBbsMst(bbsSen);
+		
+	}
+
 }

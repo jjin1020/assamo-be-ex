@@ -46,4 +46,16 @@ public interface BbsMapper {
 	 * @param bbsDTO
 	 */
 	public void updateBbsOptn(BbsDTO bbsDTO);
+	
+	/**
+	 * 게시판 설정 마스터 삭제
+	 * @param bbsSen
+	 */
+	public void deleteBbsMst(String bbsSen);
+	
+	/**
+	 * 게시판 설정 옵션 삭제
+	 * @param bbsSen
+	 */
+	public void deleteBbsOptn(String bbsSen);
 }
