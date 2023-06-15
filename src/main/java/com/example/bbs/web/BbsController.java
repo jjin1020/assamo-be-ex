@@ -48,9 +48,12 @@ public class BbsController {
 	
 	@Operation(summary = "게시판 설정 저장", description = "게시판 설정 저장")
 	@PostMapping("/saveBoard")
-	public ResponseEntity<Void> saveBoard(@RequestBody BbsDTO bbsDTO) {
-		bbsService.saveBoard(bbsDTO);
-		return ResponseEntity.noContent().build();
+	public ResponseEntity<BbsDTO> saveBoard(@RequestBody BbsDTO bbsDTO) {
+		
+		BbsDTO obj = bbsService.saveBoard(bbsDTO);
+		
+		System.out.println(obj);
+		return ResponseEntity.ok(obj);
 	}
 	
 }

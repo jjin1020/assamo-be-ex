@@ -25,5 +25,5 @@ public interface BbsService {
 	 * 게시판 설정 저장
 	 * @param bbsDTO
 	 */
-	public void saveBoard(BbsDTO bbsDTO);
+	public BbsDTO saveBoard(BbsDTO bbsDTO);
 }

@@ -37,7 +37,7 @@ public class BbsServiceImpl implements BbsService{
 
 	@Transactional()
 	@Override
-	public void saveBoard(BbsDTO bbsDTO) {
+	public BbsDTO saveBoard(BbsDTO bbsDTO) {
 		// TODO Auto-generated method stub
 		
 		bbsDTO.setUpdId(8811);
@@ -56,6 +56,8 @@ public class BbsServiceImpl implements BbsService{
 		} else {
 			bbsMapper.insertBbsOptn(bbsDTO);
 		}
+		
+		return bbsDTO;
 		
 	}
 
