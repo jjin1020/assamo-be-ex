@@ -17,4 +17,119 @@
 			, DATE_FORMAT(INP_DT, '%Y-%m-%d') AS INP_DT
 		FROM BBS_MST
     </select>
+    
+    
+    <select id="getBoard" resultType="com.example.bbs.dto.BbsDTO" parameterType="String">
+		/** BbsMapper.getBoard **/ 
+		SELECT
+			  A.BBS_SEN 
+			, A.PARENT_BBS_SEN
+			, A.BBS_TY_CD
+			, A.BBS_NAE
+			, A.BBS_DESCRIPT
+			, A.SORT_ORD
+			, B.OPTN_SEN
+			, IFNULL(B.GDNICE_USE_YN, 'N') as GDNICE_USE_YN 
+			, B.GDNICE_SCR
+			, B.GDNICE_UPP_NUM
+			, IFNULL(B.SCRTARTC_FNCT_YN, 'N') AS SCRTARTC_FNCT_YN
+			, IFNULL(B.ANSER_FNCT_YN, 'N') AS ANSER_FNCT_YN
+			, IFNULL(B.ANSWER_FNCT_YN, 'N') AS ANSWER_FNCT_YN
+			, IFNULL(B.ANNYMTY_FNCT_YN, 'N') AS ANNYMTY_FNCT_YN
+			, IFNULL(B.STTEMNT_FNCT_YN, 'N') AS STTEMNT_FNCT_YN
+			, B.STTEMNT_FNCT_TS_NUM
+		FROM BBS_MST A
+		LEFT OUTER JOIN BBS_OPTN B ON A.BBS_SEN = B.BBS_SEN
+		WHERE A.BBS_SEN = #{bbsSen}
+	</select>
+	
+	<insert id="insertBbsMst" parameterType="com.example.bbs.dto.BbsDTO">
+		/** BbsMapper.getBoard **/ 
+		INSERT INTO BBS_MST
+		(
+			  PARENT_BBS_SEN
+			, BBS_TY_CD
+			, BBS_NAE
+			, BBS_DESCRIPT
+			, SORT_ORD
+			, INP_ID
+		)
+		VALUES
+		(
+			  #{parentBbsSen}
+			, #{bbsTyCd}
+			, #{bbsNae}
+			, #{bbsDescript}
+			, #{sortOrd}
+			, #{inpId}
+		)
+		
+	</insert>
+	
+	<update id="updateBbsMst" parameterType="com.example.bbs.dto.BbsDTO">
+		/** BbsMapper.updateBbsMst **/
+		
+		UPDATE BBS_MST SET
+			BBS_TY_CD = #{bbsTyCd}
+			, BBS_NAE = #{bbsNae}
+			, BBS_DESCRIPT = #{bbsDescript}
+			, SORT_ORD = #{sortOrd}
+			, UPD_ID = #{updId}
+			, UPD_DT = NOW()
+		WHERE BBS_SEN = #{bbsSen} 
+		
+	</update>
+	
+	<insert id="insertBbsOptn" parameterType="com.example.bbs.dto.BbsDTO">
+		/** BbsMapper.insertBbsOptn **/ 
+		INSERT INTO BBS_OPTN
+		(
+			  BBS_SEN
+			, GDNICE_USE_YN
+			, GDNICE_SCR
+			, GDNICE_UPP_NUM
+			, SCRTARTC_FNCT_YN
+			, ANSER_FNCT_YN
+			, ANSWER_FNCT_YN
+			, ANNYMTY_FNCT_YN
+			, STTEMNT_FNCT_YN
+			, STTEMNT_FNCT_TS_NUM
+			, INP_ID
+		)
+		VALUES
+		(
+			  #{bbsSen}
+			, #{gdniceUseYn}
+			, #{gdniceScr}
+			, #{gdniceUppNum}
+			, #{scrtartcFnctYn}
+			, #{anserFnctYn}
+			, #{answerFnctYn}
+			, #{annymtyFnctYn}
+			, #{sttemntFnctYn}
+			, #{sttemntFnctTsNum}
+			, #{inpId}
+		)
+		
+	</insert>
+	
+	<update id="updateBbsOptn" parameterType="com.example.bbs.dto.BbsDTO">
+		/** BbsMapper.updateBbsOptn **/
+		
+		UPDATE BBS_OPTN SET
+			  GDNICE_USE_YN = #{gdniceUseYn}
+			, GDNICE_SCR = #{gdniceScr}
+			, GDNICE_UPP_NUM = #{gdniceUppNum}
+			, SCRTARTC_FNCT_YN = #{scrtartcFnctYn}
+			, ANSER_FNCT_YN = #{anserFnctYn}
+			, ANSWER_FNCT_YN = #{answerFnctYn}
+			, ANNYMTY_FNCT_YN = #{annymtyFnctYn}
+			, STTEMNT_FNCT_YN = #{sttemntFnctYn}
+			, STTEMNT_FNCT_TS_NUM = #{sttemntFnctTsNum}
+			, UPD_ID = #{updId}
+			, UPD_DT = NOW()
+		WHERE BBS_SEN = #{bbsSen}
+		AND OPTN_SEN = #{optnSen}
+		
+	</update>
 </mapper>

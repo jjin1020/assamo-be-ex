@@ -3,11 +3,38 @@ server:
   port: 8080
 
 spring:
+#  application:
+#    name: bbs
+#  config:
+#    import:
+#      - optional:classpath:common.yml
+#      - optional:classpath:common-override.yml
+#    servlet:
+#      multipart:
+#        max-file-size: 30MB
+#        max-request-size: 100MB
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
   datasource:
     url: jdbc:mariadb://localhost:3306/mysql
     username: root
     password: assamo
     driver-class-name: org.mariadb.jdbc.Driver
+#  quartz:
+#    enabled: false
+#    properties:
+#      org:
+#        quartz:
+#          scheduler:
+#            instanceId: AUTO
+#          jobStore:
+#            tablePrefix: CO_QUTZ_
+#            inClustered: true
+#            useProperties: true
+#            driverDelegateClass: org.quartx.impl.jdbcjobstore.MASSQLDelegate
 
 mybatis:
   configuration:
@@ -15,7 +42,7 @@ mybatis:
     callSettersOnNulls: true
     returnInstanceForEmptyRow: true
     mapper-locations: com/example/**/*.xml
-    type-aliases-package: com.example.**.dto
+    type-aliases-package: com.example.*.dto
 
 springdoc:
   api-docs.path: /api-docs

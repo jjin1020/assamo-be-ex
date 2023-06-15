@@ -1,19 +1,20 @@
 package com.example.bbs.web;
 
-import java.util.HashMap;
 import java.util.List;
 
-import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bbs.dto.BbsDTO;
 import com.example.bbs.service.BbsService;
-import com.example.bbs.service.impl.BbsServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,22 @@ public class BbsController {
 		List<BbsDTO> list = bbsService.listBbsMst();
 		
 		return ResponseEntity.ok(list);
+	}
+	
+	@Operation(summary = "게시판 상세 조회", description = "게시판 상세 조회")
+	@GetMapping("/getBoard/{bbsSen}")
+	public ResponseEntity<BbsDTO> getBoard(@Parameter(description="게시판 일련번호", example = "1", required = true) @PathVariable(required = true) String bbsSen) {
+		
+		BbsDTO obj = bbsService.getBoard(bbsSen);
+		
+		return ResponseEntity.ok(obj);
+	}
+	
+	@Operation(summary = "게시판 설정 저장", description = "게시판 설정 저장")
+	@PostMapping("/saveBoard")
+	public ResponseEntity<Void> saveBoard(@RequestBody BbsDTO bbsDTO) {
+		bbsService.saveBoard(bbsDTO);
+		return ResponseEntity.noContent().build();
 	}
 	
 }

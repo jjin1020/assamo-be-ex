@@ -16,5 +16,34 @@ public interface BbsMapper {
 	 * @return
 	 */
 	public List<BbsDTO> listBbsMst();
+
+	/**
+	 * 게시판 상세 조회
+	 * @return
+	 */
+	public BbsDTO getBoard(String bbsSen);
 	
+	/**
+	 * 게시판 마스터 저장
+	 * @param bbsDTO
+	 */
+	public void insertBbsMst(BbsDTO bbsDTO);
+	
+	/**
+	 * 게시판 마스터 수정
+	 * @param bbsDTO
+	 */
+	public void updateBbsMst(BbsDTO bbsDTO);
+	
+	/**
+	 * 게시판 옵션 저장
+	 * @param bbsDTO
+	 */
+	public void insertBbsOptn(BbsDTO bbsDTO);
+	
+	/**
+	 * 게시판 저장 저장
+	 * @param bbsDTO
+	 */
+	public void updateBbsOptn(BbsDTO bbsDTO);
 }
