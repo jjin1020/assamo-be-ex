@@ -44,7 +44,7 @@
 	</select>
 	
 	<insert id="insertBbsMst" parameterType="com.example.bbs.dto.BbsDTO">
-		/** BbsMapper.getBoard **/ 
+		/** BbsMapper.insertBbsMst **/ 
 		INSERT INTO BBS_MST
 		(
 			  PARENT_BBS_SEN
@@ -151,5 +151,76 @@
 		DELETE FROM BBS_OPTN
 		WHERE OPTN_SEN = #{optnSen}
 		
+	</delete>
+	
+	<select id="listAreaMst" resultType="com.example.bbs.dto.AreaDTO">
+		/** BbsMapper.deleteBbsMst **/
+		
+		SELECT 
+			AREA_SEN
+			, AREA_NAE
+			, AREA_DESCRIPT
+			, USE_YN
+			, SORT_ORD
+			, DATE_FORMAT(INP_DT, '%Y-%m-%d') AS INP_DT
+		FROM AREA_MST
+		
+	</select>
+    
+    
+    <select id="getArea" resultType="com.example.bbs.dto.AreaDTO" parameterType="String">
+		/** BbsMapper.getArea **/ 
+		SELECT
+			  AREA_SEN 
+			, AREA_NAE
+			, AREA_DESCRIPT
+			, SORT_ORD
+			, USE_YN
+		FROM AREA_MST
+		WHERE AREA_SEN = #{areaSen}
+	</select>
+	
+	<insert id="insertAreaMst" parameterType="com.example.bbs.dto.AreaDTO">
+		/** BbsMapper.insertAreaMst **/ 
+		INSERT INTO AREA_MST
+		(
+			  AREA_NAE
+			, AREA_DESCRIPT
+			, SORT_ORD
+			, USE_YN
+			, INP_ID
+		)
+		VALUES
+		(
+			  #{areaNae}
+			, #{areaDescript}
+			, #{sortOrd}
+			, #{useYn}
+			, #{inpId}
+		)
+		<selectKey resultType="int" keyProperty="areaSen" order="AFTER">
+			SELECT MAX(AREA_SEN) AS areaSen
+			FROM AREA_MST
+		</selectKey>
+	</insert>
+	
+	<update id="updateAreaMst" parameterType="com.example.bbs.dto.AreaDTO">
+		/** BbsMapper.updateAreaMst **/
+		
+		UPDATE AREA_MST SET
+			  AREA_NAE = #{areaNae}
+			, AREA_DESCRIPT = #{areaDescript}
+			, SORT_ORD = #{sortOrd}
+			, USE_YN = #{useYn}
+			, UPD_ID = #{updId}
+			, UPD_DT = NOW()
+		WHERE AREA_SEN = #{areaSen} 
+		
+	</update>
+	
+	<delete id="deleteAreaMst" parameterType="String">
+		/** BbsMapper.deleteAreaMst **/
+		DELETE FROM AREA_MST
+		WHERE AREA_SEN = #{areaSen}
 	</delete>
 </mapper>

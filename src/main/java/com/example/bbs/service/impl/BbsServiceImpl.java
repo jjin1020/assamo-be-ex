@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.bbs.dao.BbsMapper;
+import com.example.bbs.dto.AreaDTO;
 import com.example.bbs.dto.BbsDTO;
 import com.example.bbs.service.BbsService;
 
@@ -70,6 +71,41 @@ public class BbsServiceImpl implements BbsService{
 		
 		bbsMapper.deleteBbsMst(bbsSen);
 		
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<AreaDTO> listAreaMst() {
+		// TODO Auto-generated method stub
+		return bbsMapper.listAreaMst();
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public AreaDTO getArea(String areaSen) {
+		// TODO Auto-generated method stub
+		return bbsMapper.getArea(areaSen);
+	}
+
+	@Transactional()
+	@Override
+	public AreaDTO saveArea(AreaDTO areaDTO) {
+		// TODO Auto-generated method stub
+		if (areaDTO.getAreaSen() != 0) {
+			
+			bbsMapper.updateAreaMst(areaDTO);
+		} else {
+			bbsMapper.insertAreaMst(areaDTO);
+		}
+		
+		return areaDTO;
+	}
+
+	@Transactional()
+	@Override
+	public void deleteArea(String areaSen) {
+		// TODO Auto-generated method stub
+		bbsMapper.deleteArea(areaSen);
 	}
 
 }
