@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.bbs.dao.NttMapper">
+    
+    <select id="listNtt" resultType="com.example.bbs.dto.NttDTO" parameterType="com.example.bbs.dto.NttSerchDTO">
+		/** NttMapper.listNtt **/
+	  
+	  SELECT
+			  A.NTT_SEN
+			, A.AREA_SEN
+			, A.BBS_SEN
+			, A.PARENT_NTT_SEN
+			, A.ANNYMTY_FNCY_YN
+			, A.SCRTARTC_FNCT_YN
+			, A.DEL_YN
+			, A.HIDE_YN
+			, A.NOTICE_YN
+			, A.NCNM_NAE
+			, A.WRITER_NAM
+			, A.ANSWER_DEL_YN
+			, A.NTT_SUBJECT
+			, A.NTT_CONTENTS
+			, A.NTT_TEXT_CONTENTS
+			, B.NICE_NUM
+			, B.UNNICE_NUM
+			, C.SERCH_NUM
+			, D.ANSER_NUM
+			, A.INP_DT
+			, A.INP_ID
+			, A.UPD_DT
+			, A.UPD_ID
+		FROM ntt_mst A
+		LEFT OUTER JOIN (
+			SELECT 
+				NTT_SEN 
+				, SUM(IF(GDNICE_SEC = 'Y', 1, 0)) AS NICE_NUM
+				, SUM(IF(GDNICE_SEC = 'N', 1, 0)) AS UNNICE_NUM
+			FROM NTT_GDNICE_MST
+			GROUP BY NTT_SEN
+		) B ON A.NTT_SEN = B.NTT_SEN
+		LEFT OUTER JOIN (
+			SELECT 
+				NTT_SEN
+				,COUNT(*) AS SERCH_NUM
+			FROM NTT_SERCH_MST
+			GROUP BY NTT_SEN) C ON A.NTT_SEN = C.NTT_SEN
+		LEFT OUTER JOIN (
+			SELECT 
+				NTT_SEN
+				, COUNT(*) AS ANSER_NUM
+			FROM NTT_ANSER
+			GROUP BY NTT_SEN
+		) D ON A.NTT_SEN = D.NTT_SEN
+		WHERE AREA_SEN = #{areaSen}
+		AND BBS_SEN = #{bbsSen}
+    </select>
+</mapper>
