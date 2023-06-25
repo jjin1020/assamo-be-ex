@@ -19,4 +19,22 @@ public interface NttService {
 	 * @param nttDTO
 	 */
 	public void saveNtt(NttDTO nttDTO);
+	
+	/**
+	 * 게시물 저장
+	 * @param nttDTO
+	 */
+	public void insertNttMst(NttDTO nttDTO);
+	
+	/**
+	 * 게시물 좋아요 정보 저장
+	 * @param nttDTO
+	 */
+	public void insertNttGdniceMst(NttDTO nttDTO);
+	
+	/**
+	 * 게시물 조회 정보 저장
+	 * @param nttDTO
+	 */
+	public void insertNttSerchMst(NttDTO nttDTO);
 }

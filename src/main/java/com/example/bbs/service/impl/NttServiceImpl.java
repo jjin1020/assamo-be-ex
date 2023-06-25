@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.bbs.dao.BbsMapper;
+import com.example.bbs.dao.NttMapper;
 import com.example.bbs.dto.AreaDTO;
 import com.example.bbs.dto.BbsDTO;
 import com.example.bbs.dto.NttDTO;
@@ -24,12 +25,14 @@ import lombok.extern.slf4j.Slf4j;
 public class NttServiceImpl implements NttService{
 
 	private final BbsMapper bbsMapper;
+	
+	private final NttMapper nttMapper;
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<NttDTO> listNtt(NttSerchDTO nttSerchDTO) {
 		// TODO Auto-generated method stub
-		return null;
+		return nttMapper.listNtt(nttSerchDTO);
 	}
 
 	@Transactional()
@@ -37,6 +40,32 @@ public class NttServiceImpl implements NttService{
 	public void saveNtt(NttDTO nttDTO) {
 		// TODO Auto-generated method stub
 		
+		if (nttDTO.getNttSen() > 0) {
+			
+		} else {
+			insertNttMst(nttDTO);
+		}
+	}
+
+	@Transactional()
+	@Override
+	public void insertNttMst(NttDTO nttDTO) {
+		// TODO Auto-generated method stub
+		nttMapper.insertNttMst(nttDTO);
+	}
+
+	@Transactional()
+	@Override
+	public void insertNttGdniceMst(NttDTO nttDTO) {
+		// TODO Auto-generated method stub
+		nttMapper.insertNttGdniceMst(nttDTO);
+	}
+
+	@Transactional()
+	@Override
+	public void insertNttSerchMst(NttDTO nttDTO) {
+		// TODO Auto-generated method stub
+		nttMapper.insertNttSerchMst(nttDTO);
 	}
 	
 }

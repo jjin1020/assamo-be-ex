@@ -83,6 +83,7 @@
 		(
 			#{areaSen}
 			, #{bbsSen}
+			, #{parentNttSen}
 			, #{annymtyFncyYn}
 			, #{scrtartcFnctYn}
 			, #{delYn}
@@ -98,6 +99,24 @@
 		)
 		
 	</insert>
+	
+	<update id="updateNttMst" parameterType="com.example.bbs.dto.NttDTO">
+		/** NttMapper.updateNttMst **/
+		UPDATE NTT_MST SET
+			  ANNYMTY_FNCY_YN = #{annymtyFncyYn}
+			, SCRTARTC_FNCT_YN = #{scrtartcFnctYn}
+			, DEL_YN = #{delYn}
+			, HIDE_YN = #{hideYn}
+			, NOTICE_YN = #{noticeYn}
+			, ANSWER_DEL_YN = #{answerDelYn}
+			, NTT_SUBJECT = #{nttSubject}
+			, NTT_CONTENTS = #{nttContents}
+			, NTT_TEXT_CONTENTS = #{nttTextContents}
+			, UPD_DT = NOW()
+			, UPD_ID = #{updId}
+		WHERE NTT_SEN = #{nttSen}
+		
+	</update>
 	
 	<insert id="insertNttGdniceMst" parameterType="com.example.bbs.dto.NttDTO">
 		/** NttMapper.insertNttMst **/
