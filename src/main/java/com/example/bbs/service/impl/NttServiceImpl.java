@@ -41,7 +41,7 @@ public class NttServiceImpl implements NttService{
 		// TODO Auto-generated method stub
 		
 		if (nttDTO.getNttSen() > 0) {
-			
+			nttMapper.updateNttMst(nttDTO);
 		} else {
 			insertNttMst(nttDTO);
 		}

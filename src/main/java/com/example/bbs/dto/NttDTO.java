@@ -25,7 +25,7 @@ public class NttDTO {
 	@Schema(description = "게시판 일련번호", example = "")
 	private int bbsSen;
 	@Schema(description = "익명기능사용여부", example = "")
-	private String annymtyFncyYn;
+	private String annymtyFnctYn;
 	@Schema(description = "비밀글기능사용여부", example = "")
 	private String scrtartcFnctYn;
 	@Schema(description = "삭제여부", example = "")

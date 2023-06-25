@@ -13,7 +13,7 @@
 			, A.AREA_SEN
 			, A.BBS_SEN
 			, A.PARENT_NTT_SEN
-			, A.ANNYMTY_FNCY_YN
+			, A.ANNYMTY_FNCT_YN
 			, A.SCRTARTC_FNCT_YN
 			, A.DEL_YN
 			, A.HIDE_YN
@@ -24,10 +24,10 @@
 			, A.NTT_SUBJECT
 			, A.NTT_CONTENTS
 			, A.NTT_TEXT_CONTENTS
-			, B.NICE_NUM
-			, B.UNNICE_NUM
-			, C.SERCH_NUM
-			, D.ANSER_NUM
+			, IFNULL(B.NICE_NUM, 0) AS NICE_NUM
+			, IFNULL(B.UNNICE_NUM, 0) AS UNNICE_NUM
+			, IFNULL(C.SERCH_NUM, 0) AS SERCH_NUM
+			, IFNULL(D.ANSER_NUM, 0) AS ANSER_NUM
 			, A.INP_DT
 			, A.INP_ID
 			, A.UPD_DT
@@ -56,9 +56,6 @@
 		) D ON A.NTT_SEN = D.NTT_SEN
 		WHERE AREA_SEN = #{areaSen}
 		AND BBS_SEN = #{bbsSen}
-		<if test='nttSen != null and nttSen != ""'>
-			AND A.NTT_SEN = #{nttSen}
-		</if>
     </select>
     
     <select id="getNtt" resultType="com.example.bbs.dto.NttDTO" parameterType="com.example.bbs.dto.NttSerchDTO">
@@ -69,8 +66,8 @@
 			, A.AREA_SEN
 			, A.BBS_SEN
 			, A.PARENT_NTT_SEN
-			, A.ANNYMTY_FNCY_YN
-			, A.SCRTARTC_FNCT_YN
+			, IFNULL(A.ANNYMTY_FNCT_YN, 'N') AS ANNYMTY_FNCT_YN
+			, IFNULL(A.SCRTARTC_FNCT_YN, 'N') AS SCRTARTC_FNCT_YN
 			, A.DEL_YN
 			, A.HIDE_YN
 			, A.NOTICE_YN
@@ -80,10 +77,10 @@
 			, A.NTT_SUBJECT
 			, A.NTT_CONTENTS
 			, A.NTT_TEXT_CONTENTS
-			, B.NICE_NUM
-			, B.UNNICE_NUM
-			, C.SERCH_NUM
-			, D.ANSER_NUM
+			, IFNULL(B.NICE_NUM, 0) AS NICE_NUM
+			, IFNULL(B.UNNICE_NUM, 0) AS UNNICE_NUM
+			, IFNULL(C.SERCH_NUM, 0) AS SERCH_NUM
+			, IFNULL(D.ANSER_NUM, 0) AS ANSER_NUM
 			, A.INP_DT
 			, A.INP_ID
 			, A.UPD_DT
@@ -123,7 +120,7 @@
 			  AREA_SEN
 			, BBS_SEN
 			, PARENT_NTT_SEN
-			, ANNYMTY_FNCY_YN
+			, ANNYMTY_FNCT_YN
 			, SCRTARTC_FNCT_YN
 			, DEL_YN
 			, HIDE_YN
@@ -141,7 +138,7 @@
 			#{areaSen}
 			, #{bbsSen}
 			, #{parentNttSen}
-			, #{annymtyFncyYn}
+			, #{annymtyFnctYn}
 			, #{scrtartcFnctYn}
 			, #{delYn}
 			, #{hideYn}
@@ -160,7 +157,7 @@
 	<update id="updateNttMst" parameterType="com.example.bbs.dto.NttDTO">
 		/** NttMapper.updateNttMst **/
 		UPDATE NTT_MST SET
-			  ANNYMTY_FNCY_YN = #{annymtyFncyYn}
+			  ANNYMTY_FNCT_YN = #{annymtyFnctYn}
 			, SCRTARTC_FNCT_YN = #{scrtartcFnctYn}
 			, DEL_YN = #{delYn}
 			, HIDE_YN = #{hideYn}

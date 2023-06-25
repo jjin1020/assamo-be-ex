@@ -23,6 +23,12 @@ public interface NttMapper {
 	public void insertNttMst(NttDTO nttDTO);
 	
 	/**
+	 * 게시물 수정
+	 * @param nttDTO
+	 */
+	public void updateNttMst(NttDTO nttDTO);
+	
+	/**
 	 * 게시물 좋아요 정보 저장
 	 * @param nttDTO
 	 */
