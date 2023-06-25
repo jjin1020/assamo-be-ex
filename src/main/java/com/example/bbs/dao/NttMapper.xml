@@ -57,4 +57,85 @@
 		WHERE AREA_SEN = #{areaSen}
 		AND BBS_SEN = #{bbsSen}
     </select>
+    
+    <insert id="insertNttMst" parameterType="com.example.bbs.dto.NttDTO">
+		/** NttMapper.insertNttMst **/
+		
+		insert into NTT_MST
+		(
+			  AREA_SEN
+			, BBS_SEN
+			, PARENT_NTT_SEN
+			, ANNYMTY_FNCY_YN
+			, SCRTARTC_FNCT_YN
+			, DEL_YN
+			, HIDE_YN
+			, NOTICE_YN
+			, NCNM_NAE
+			, WRITER_NAM
+			, ANSWER_DEL_YN
+			, NTT_SUBJECT
+			, NTT_CONTENTS
+			, NTT_TEXT_CONTENTS
+			, INP_ID
+		)
+		VALUES
+		(
+			#{areaSen}
+			, #{bbsSen}
+			, #{annymtyFncyYn}
+			, #{scrtartcFnctYn}
+			, #{delYn}
+			, #{hideYn}
+			, #{noticeYn}
+			, #{ncnmNae}
+			, #{writerNam}
+			, #{answerDelYn}
+			, #{nttSubject}
+			, #{nttContents}
+			, #{nttTextContents}
+			, #{inpId}
+		)
+		
+	</insert>
+	
+	<insert id="insertNttGdniceMst" parameterType="com.example.bbs.dto.NttDTO">
+		/** NttMapper.insertNttMst **/
+		
+		INSERT INTO NTT_GDNICE_MST (
+			  USER_ID
+			, NTT_SEN
+			, USE_YN
+			, GDNICE_SEC
+			, INP_ID
+		)
+		VALUES
+		(
+			  #{userId}
+			, #{nttSen}
+			, #{useYn}
+			, #{gdniceSec}
+			, #{inpId}
+		)
+		
+	</insert>
+	
+	<insert id="insertNttSerchMst" parameterType="com.example.bbs.dto.NttDTO">
+		/** NttMapper.insertNttMst **/
+		
+		INSERT INTO NTT_SERCH_MST 
+		(
+			  USER_ID
+			, NTT_SEN
+			, IP_ADDR
+			, INP_ID
+		)
+		VALUES
+		(
+			  #{userId}
+			, #{nttSen}
+			, #{ipAddr}
+			, #{inpId}
+		)
+	</insert>
 </mapper>

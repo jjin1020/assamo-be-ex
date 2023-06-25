@@ -31,5 +31,12 @@ public class NttServiceImpl implements NttService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Transactional()
+	@Override
+	public void saveNtt(NttDTO nttDTO) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

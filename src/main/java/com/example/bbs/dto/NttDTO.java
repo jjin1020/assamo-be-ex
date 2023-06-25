@@ -71,5 +71,26 @@ public class NttDTO {
 	private int updId;
 	@Schema(description = "수정일시", example = "")
 	private String updDt;
+	
+	
+	/**
+	 * 게시물 좋아요 싫어요 정보
+	 */
+	
+	@Schema(description = "유저아이디", example = "")
+	private String userId;
+	@Schema(description = "사용여부", example = "")
+	private String useYn;
+	@Schema(description = "좋아요,싫어요 구분", example = "")
+	private String gdniceSec;
+	
+	
+	/**
+	 * 게시물 조회 정보
+	 */
+	
+
+	@Schema(description = "IP주소", example = "")
+	private String ipAddr;
 
 }

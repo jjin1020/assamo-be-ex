@@ -5,7 +5,9 @@ import java.util.List;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bbs.dto.NttDTO;
@@ -13,6 +15,7 @@ import com.example.bbs.dto.NttSerchDTO;
 import com.example.bbs.service.NttService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,5 +36,12 @@ public class NttController {
 		List<NttDTO> list = nttService.listNtt(nttSerchDTO);
 		
 		return ResponseEntity.ok(list);
+	}
+	
+	@Operation(summary = "게시물 저장", description = "게시물 저장")
+	@PostMapping("/save")
+	public ResponseEntity<Void> saveNtt(@RequestBody NttDTO nttDTO) {
+		
+		return ResponseEntity.noContent().build();
 	}
 }
