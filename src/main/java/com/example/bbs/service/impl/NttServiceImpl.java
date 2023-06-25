@@ -68,4 +68,11 @@ public class NttServiceImpl implements NttService{
 		nttMapper.insertNttSerchMst(nttDTO);
 	}
 	
+	@Transactional(readOnly = true)
+	@Override
+	public NttDTO getNtt(NttSerchDTO nttSerchDTO) {
+		// TODO Auto-generated method stub
+		return nttMapper.getNtt(nttSerchDTO);
+	}
+	
 }

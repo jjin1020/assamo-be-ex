@@ -33,4 +33,9 @@ public interface NttMapper {
 	 * @param nttDTO
 	 */
 	public void insertNttSerchMst(NttDTO nttDTO);
+
+	/**
+	 * 게시물 상세 조회
+	 */
+	public NttDTO getNtt(NttSerchDTO nttSerchDTO);
 }
