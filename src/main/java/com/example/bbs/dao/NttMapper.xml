@@ -211,4 +211,13 @@
 			, #{inpId}
 		)
 	</insert>
+	
+	<select id="getNttSerchMst" parameterType="com.example.bbs.dto.NttSerchDTO" resultType="String">
+		/** NttMapper.getNttSerchMst **/
+		SELECT IF(COUNT(*) > 0, 'Y', 'N') AS EXISTS_YN
+		FROM NTT_SERCH_MST
+		WHERE NTT_SEN = #{nttSen}
+		AND IP_ADDR = #{ipAddr}
+		
+	</select>
 </mapper>

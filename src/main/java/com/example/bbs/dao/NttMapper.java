@@ -44,4 +44,11 @@ public interface NttMapper {
 	 * 게시물 상세 조회
 	 */
 	public NttDTO getNtt(NttSerchDTO nttSerchDTO);
+	
+	/**
+	 * 게시물 조회 여부 조회
+	 * @param nttDTO
+	 * @return
+	 */
+	public String getNttSerchMst(NttSerchDTO nttSerchDTO);
 }

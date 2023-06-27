@@ -88,7 +88,6 @@ public class NttDTO {
 	/**
 	 * 게시물 조회 정보
 	 */
-	
 
 	@Schema(description = "IP주소", example = "")
 	private String ipAddr;

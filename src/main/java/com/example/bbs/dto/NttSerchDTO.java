@@ -24,5 +24,7 @@ public class NttSerchDTO {
 	private int areaSen;
 	@Schema(description = "게시판 일련번호", example = "")
 	private int bbsSen;
+	@Schema(description = "ip 주소", example = "")
+	private String ipAddr;
 
 }
