@@ -276,6 +276,6 @@
 		      ON n.PARENT_ANSER_SEN = cte.ANSER_SEN
 		)
 		SELECT * FROM cte
-		ORDER BY SORT, LV;
+		ORDER BY SORT, LV, ANSER_SEN;
 	</select>
 </mapper>

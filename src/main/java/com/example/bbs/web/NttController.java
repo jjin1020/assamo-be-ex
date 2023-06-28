@@ -51,8 +51,9 @@ public class NttController {
 	@Operation(summary = "게시물 상세 조회", description = "게시물 상세 조회")
 	@GetMapping("/getNtt")
 	public ResponseEntity<NttDTO> getNtt(@ParameterObject NttSerchDTO nttSerchDTO) {
-		
+
 		NttDTO obj = nttService.getNtt(nttSerchDTO);
+		System.out.println(obj);
 		
 		return ResponseEntity.ok(obj);
 	}
