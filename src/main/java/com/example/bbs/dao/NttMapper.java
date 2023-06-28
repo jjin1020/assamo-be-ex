@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.bbs.dto.AnserDTO;
 import com.example.bbs.dto.NttDTO;
 import com.example.bbs.dto.NttSerchDTO;
 
@@ -51,4 +52,16 @@ public interface NttMapper {
 	 * @return
 	 */
 	public String getNttSerchMst(NttSerchDTO nttSerchDTO);
+	
+	/**
+	 * 댓글저장
+	 * @param anserDTO
+	 */
+	public void insertAnser(AnserDTO anserDTO);
+	
+	/**
+	 * 댓글저장
+	 * @param anserDTO
+	 */
+	public List<AnserDTO> listAnser(AnserDTO anserDTO);
 }

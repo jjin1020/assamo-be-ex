@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.bbs.dao.BbsMapper;
 import com.example.bbs.dao.NttMapper;
+import com.example.bbs.dto.AnserDTO;
 import com.example.bbs.dto.AreaDTO;
 import com.example.bbs.dto.BbsDTO;
 import com.example.bbs.dto.NttDTO;
@@ -104,6 +105,20 @@ public class NttServiceImpl implements NttService{
 		}
 		
 		return ipAddress;
+	}
+
+	@Transactional()
+	@Override
+	public void saveAnser(AnserDTO anserDTO) {
+		// TODO Auto-generated method stub
+		nttMapper.insertAnser(anserDTO);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<AnserDTO> listAnser(AnserDTO anserDTO) {
+		// TODO Auto-generated method stub
+		return nttMapper.listAnser(anserDTO);
 	}
 	
 }

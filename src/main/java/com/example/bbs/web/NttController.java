@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bbs.dto.AnserDTO;
 import com.example.bbs.dto.NttDTO;
 import com.example.bbs.dto.NttSerchDTO;
 import com.example.bbs.service.NttService;
@@ -54,5 +55,26 @@ public class NttController {
 		NttDTO obj = nttService.getNtt(nttSerchDTO);
 		
 		return ResponseEntity.ok(obj);
+	}
+	
+	@Operation(summary = "댓글 저장", description = "댓글 저장")
+	@PostMapping("/saveAnser")
+	public ResponseEntity<Void> saveAnser(@RequestBody AnserDTO anserDTO) {
+		
+		nttService.saveAnser(anserDTO);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@Operation(summary = "댓글조회", description = "댓글조회")
+	@GetMapping("/listAnser")
+	public ResponseEntity<List<AnserDTO>> listAnser(@ParameterObject AnserDTO anserDTO) {
+		
+		
+		System.out.println(anserDTO);
+		
+		List<AnserDTO> list = nttService.listAnser(anserDTO);
+		
+		return ResponseEntity.ok(list);
 	}
 }

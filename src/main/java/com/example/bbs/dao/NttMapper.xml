@@ -220,4 +220,62 @@
 		AND IP_ADDR = #{ipAddr}
 		
 	</select>
+	
+	<insert id="insertAnser" parameterType="com.example.bbs.dto.AnserDTO">
+		/** NttMapper.insertAnser **/
+		
+		INSERT INTO NTT_ANSER
+		(
+			  PARENT_ANSER_SEN
+			, NTT_SEN
+			, WRITER_NAM
+			, ANSER_CONTENTS
+			, INP_ID
+		)
+		VALUES
+		(
+			  #{parentAnserSen}
+			, #{nttSen}
+			, #{writerNam}
+			, #{anserContents}
+			, #{inpId}
+		)
+		
+	</insert>
+	
+	<select id="listAnser" resultType="com.example.bbs.dto.AnserDTO" parameterType="com.example.bbs.dto.AnserDTO">
+		/** NttMapper.listAnser **/
+		WITH RECURSIVE cte AS (
+		  SELECT
+		    ANSER_SEN,
+		    PARENT_ANSER_SEN,
+		    ANSER_CONTENTS,
+		    ANSER_SEN AS SORT,
+			WRITER_NAM,
+			DATE_FORMAT(INP_DT, '%Y.%m.%d %H:%i') AS INP_DT,
+		    0 AS LV
+		  FROM
+		    NTT_ANSER
+		  WHERE
+		    NTT_SEN = #{nttSen} 
+		    AND PARENT_ANSER_SEN = 0
+		    
+		  UNION ALL
+		  
+		  SELECT
+		    n.ANSER_SEN,
+		    n.PARENT_ANSER_SEN,
+		    n.ANSER_CONTENTS,
+		    cte.SORT,
+			n.WRITER_NAM,
+			DATE_FORMAT(n.INP_DT, '%Y.%m.%d %H:%i') AS INP_DT,
+		    cte.LV + 1
+		  FROM
+		    NTT_ANSER n
+		    INNER JOIN cte
+		      ON n.PARENT_ANSER_SEN = cte.ANSER_SEN
+		)
+		SELECT * FROM cte
+		ORDER BY SORT, LV;
+	</select>
 </mapper>

@@ -2,6 +2,7 @@ package com.example.bbs.service;
 
 import java.util.List;
 
+import com.example.bbs.dto.AnserDTO;
 import com.example.bbs.dto.NttDTO;
 import com.example.bbs.dto.NttSerchDTO;
 
@@ -43,4 +44,17 @@ public interface NttService {
 	 * 게시물 상세 조회
 	 */
 	public NttDTO getNtt(NttSerchDTO nttSerchDTO);
+	
+	
+	/**
+	 * 게시물 댓글 저장
+	 * @param nttDTO
+	 */
+	public void saveAnser(AnserDTO anserDTO);
+	
+	/**
+	 * 댓글 조회
+	 * @param anserDTO
+	 */
+	public List<AnserDTO> listAnser(AnserDTO anserDTO);
 }
